@@ -4,12 +4,41 @@ import { useNavigate, Link } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Logging in:', { email, password });
-    navigate('/');
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Login failed');
+      }
+
+      // Optional: store token or user in localStorage
+      // localStorage.setItem('token', data.token);
+      // localStorage.setItem('user', JSON.stringify(data.user));
+
+      alert('Login successful!');
+      navigate('/'); // redirect after login
+    } catch (err) {
+      setError(err.message || 'Something went wrong');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -20,6 +49,13 @@ function Login() {
           <h1 className="text-3xl font-bold text-pink-500">Welcome Back</h1>
           <p className="text-gray-400 mt-1 text-sm">Login to continue</p>
         </div>
+
+        {/* Error Message */}
+        {error && (
+          <div className="mb-4 text-red-400 text-sm text-center bg-red-800/30 px-4 py-2 rounded-md">
+            {error}
+          </div>
+        )}
 
         {/* Form */}
         <form onSubmit={handleLogin} className="space-y-5">
@@ -55,9 +91,12 @@ function Login() {
 
           <button
             type="submit"
-            className="w-full py-2 bg-pink-900 hover:bg-pink-700 text-white rounded-lg transition font-medium shadow-md"
+            disabled={loading}
+            className={`w-full py-2 ${
+              loading ? 'bg-pink-700' : 'bg-pink-900 hover:bg-pink-700'
+            } text-white rounded-lg transition font-medium shadow-md`}
           >
-            Login
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
@@ -73,4 +112,3 @@ function Login() {
 }
 
 export default Login;
-

@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
-
+const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt')
 // @desc    Get all users
 exports.getUsers = async (req, res) => {
   try {
@@ -9,6 +10,7 @@ exports.getUsers = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 // @desc    Get single user by ID
 exports.getUserById = async (req, res) => {
@@ -21,20 +23,74 @@ exports.getUserById = async (req, res) => {
   }
 };
 
+//login user
+exports.loginuser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user || !password) return res.status(404).json({ message: 'login fail' });
+    const ispassEqual = await bcrypt.compare(password, user.password);
+    if (!ispassEqual) {
+
+      return res.status(404).json({ message: 'login fail password not match' })
+    } else {
+      res.json(user);
+    }
+
+
+
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 // @desc    Create a new user
+// exports.createUser = async (req, res) => {
+//   try {
+//     const userData = req.body;
+
+
+//     const newUser = new User(userData);
+//     console.log(userData)
+//     // const salt = bcrypt.genSaltSync(10);
+//     // userData.password = await bcrypt.hash(password,salt)
+//     const savedUser = await newUser.save();
+
+//     res.status(201).json({ message: 'Signup successful', user: savedUser });
+//   } catch (err) {
+//     res.status(400).json({ message: err.message });
+//   }
+// };
+
 exports.createUser = async (req, res) => {
   try {
     const userData = req.body;
 
+    // Validate required fields
+    if (!userData.password || !userData.email) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+
+    // Hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
+
+    // Replace plain password with hashed one
+    userData.password = hashedPassword;
+
+    // Create and save user
     const newUser = new User(userData);
     const savedUser = await newUser.save();
 
-    res.status(201).json({ message: 'Signup successful', user: savedUser });
+    // Remove password before sending response
+    const userResponse = savedUser.toObject();
+    delete userResponse.password;
+
+    res.status(201).json({ message: 'Signup successful', user: userResponse });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
-
 // @desc    Update a user
 exports.updateUser = async (req, res) => {
   try {

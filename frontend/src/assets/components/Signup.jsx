@@ -251,7 +251,7 @@ function Signup() {
             Log in
           </Link>
         </p>
-      </div>
+  3    </div>
     </div>
   );
 }
