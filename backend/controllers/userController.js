@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 // const bcrypt = require('bcrypt')
 // @desc    Get all users
 exports.getUsers = async (req, res) => {
@@ -34,7 +35,20 @@ exports.loginuser = async (req, res) => {
 
       return res.status(404).json({ message: 'login fail password not match' })
     } else {
-      res.json(user);
+      const jwtToken = jwt.sign(
+        {email:user.email , id:user.id},
+        process.env.JWT_SECRET,
+        {expiresIn:'24h'}
+      
+      )
+      res.status(200)
+      .json({
+        message:"login success",
+        jwtToken,
+        email,
+        name:user.name,
+        user
+      });
     }
 
 
