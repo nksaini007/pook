@@ -53,9 +53,67 @@
 // };
 
 // export default Categories;
+// import React from "react";
+// import cetogry from "../json/Catogry.json";
+
+// const Categories = () => {
+//   return (
+//     <div className="relative min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] overflow-hidden p-6">
+//       {/* Light glow blobs */}
+//       <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-purple-500 opacity-20 rounded-full blur-[100px] z-0" />
+//       <div className="absolute bottom-[-80px] right-[-80px] w-[250px] h-[250px] bg-pink-500 opacity-20 rounded-full blur-[100px] z-0" />
+
+//       {/* Content */}
+//       <div className="relative z-10 max-w-6xl mx-auto">
+//         <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-10">
+//           Explore Categories
+//         </h2>
+
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+//           {cetogry.homeCategories.map((category) => (
+//             <div
+//               key={category.id}
+//               className="relative group bg-white/10 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between hover:shadow-[0_20px_50px_rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1"
+//             >
+//               {/* Image */}
+//               <div className="h-48 w-full mb-6 overflow-hidden rounded-lg"> {/* Increased height to 192px */}
+//                 <img
+//                   src={category.image}
+//                   alt={category.name}
+//                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+//                 />
+//               </div>
+
+//               {/* Title */}
+//               <h3 className="text-xl font-semibold text-white mb-3 text-center group-hover:text-pink-400 transition">
+//                 {category.name}
+//               </h3>
+
+//               {/* Subcategories */}
+//               <div className="grid grid-cols-2 gap-2 mt-auto">
+//                 {category.subcategories.map((sub, idx) => (
+//                   <span
+//                     key={idx}
+//                     className="text-white text-xs bg-white/20 px-3 py-1 rounded-full text-center backdrop-blur-sm hover:bg-pink-500 hover:text-white transition-all cursor-pointer"
+//                   >
+//                     {sub}
+//                   </span>
+//                 ))}
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Categories;
+
+
 import React from "react";
 import cetogry from "../json/Catogry.json";
-
+import { Link } from "react-router-dom";
 const Categories = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] overflow-hidden p-6">
@@ -71,6 +129,7 @@ const Categories = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {cetogry.homeCategories.map((category) => (
+        <Link to={`/category/${category.name}`}>
             <div
               key={category.id}
               className="relative group bg-white/10 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between hover:shadow-[0_20px_50px_rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1"
@@ -100,7 +159,7 @@ const Categories = () => {
                   </span>
                 ))}
               </div>
-            </div>
+            </div></Link>
           ))}
         </div>
       </div>
@@ -109,4 +168,5 @@ const Categories = () => {
 };
 
 export default Categories;
+
 

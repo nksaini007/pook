@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom'
 import Login from './assets/components/Login'
 import Signup from './assets/components/Signup'
 import NotFound404 from './assets/components/NotFound404'
+import CategoryPage from './assets/components/CategoryPage'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -16,7 +17,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup/>} />
         <Route path="*" element={<NotFound404/>} />
-
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
       </Routes>
 
 
