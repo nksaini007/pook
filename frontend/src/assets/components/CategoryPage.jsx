@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import categoryData from "../json/Catogry.json";
 import Nev from './Nev';
-
+import Footer from './Footer'
 function CategoryPage() {
   const { categoryName } = useParams();
 
@@ -16,7 +16,8 @@ function CategoryPage() {
       <Nev />
 
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-purple-700 via-indigo-800 to-gray-800 text-white py-8 shadow-md mb-10">
+      <div className="bg-gradient-to-r from-purple-700 via-indigo-800 to-gray-800 text-white py-8 shadow-md mb-10" 
+      >
         <div className="max-w-5xl mx-auto px-4">
           <h1 className="text-4xl font-extrabold">
             Category: <span className="capitalize text-indigo-300">{categoryName}</span>
@@ -60,7 +61,9 @@ function CategoryPage() {
             </div>
           ))
         )}
+        
       </div>
+      <Footer/>
     </div>
   );
 }
