@@ -16,14 +16,15 @@ function CategoryPage() {
       <Nev />
 
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-purple-700 via-indigo-800 to-gray-800 text-white py-8 shadow-md mb-10" 
+      <div className="bg-gradient-to-r from-purple-700 via-indigo-800 to-gray-800 text-white py-8 shadow-md mb-10"
       >
         <div className="max-w-5xl mx-auto px-4">
           <h1 className="text-4xl font-extrabold">
             Category: <span className="capitalize text-indigo-300">{categoryName}</span>
           </h1>
           <p className="text-lg mt-2 text-gray-300">
-            Explore items in the "{categoryName}" category.
+            Explore items in the "{categoryName}" category.]
+
           </p>
         </div>
       </div>
@@ -36,8 +37,23 @@ function CategoryPage() {
           </div>
         ) : (
           matchedCategories.map((category) => (
+
             <div key={category.id} className="mb-12">
               <h2 className="text-2xl font-semibold text-white mb-4">{category.name}</h2>
+              <div className="relative w-full max-w-4xl mx-auto p-10 group">
+                <div className="overflow-hidden rounded-2xl shadow-2xl  backdrop-blur-sm bg-white/5">
+                  <img
+                    src={category.image}
+                    alt="Category Image"
+                    className="w-full h-96 object-cover  transition-transform duration-500 ease-in-out group-hover:scale-110"
+                  />
+                </div>
+
+                {/* Optional overlay title or gradient */}
+       
+              </div>
+
+
 
               {/* Subcategory Cards */}
               <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -61,9 +77,9 @@ function CategoryPage() {
             </div>
           ))
         )}
-        
+
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
