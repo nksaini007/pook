@@ -7,6 +7,7 @@ import Login from './assets/components/Login'
 import Signup from './assets/components/Signup'
 import NotFound404 from './assets/components/NotFound404'
 import CategoryPage from './assets/components/CategoryPage'
+import ItemPage from './assets/components/ItemPage'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -18,6 +19,8 @@ function App() {
         <Route path='/signup' element={<Signup/>} />
         <Route path="*" element={<NotFound404/>} />
         <Route path="/category/:categoryName" element={<CategoryPage />} />
+        <Route path="/category/:categoryName/:itemName" element={<ItemPage />} />
+
       </Routes>
 
 

@@ -1,0 +1,102 @@
+[
+  {
+    "category": "Home Textile",
+    "subcategory": "Bedsheets",
+    "type": "Cotton",
+    "name": "Premium Cotton Bedsheet",
+    "details": "Soft and breathable 100% cotton bedsheet, available in queen and king sizes.",
+    "image": "https://example.com/images/cotton_bedsheet.jpg",
+    "price": 29.99,
+    "stock": 120
+  },
+  {
+    "category": "Home Textile",
+    "subcategory": "Bedsheets",
+    "type": "Silk",
+    "name": "Luxury Silk Bedsheet",
+    "details": "Smooth silk bedsheet for a royal sleeping experience.",
+    "image": "https://example.com/images/silk_bedsheet.jpg",
+    "price": 59.99,
+    "stock": 50
+  },
+  {
+    "category": "Home Textile",
+    "subcategory": "Curtains",
+    "type": "Window",
+    "name": "Elegant Window Curtain",
+    "details": "Light-blocking window curtain with modern patterns.",
+    "image": "https://example.com/images/window_curtain.jpg",
+    "price": 45.00,
+    "stock": 70
+  },
+  {
+    "category": "Home Textile",
+    "subcategory": "Curtains",
+    "type": "Door",
+    "name": "Classic Door Curtain",
+    "details": "Perfect door curtain with elegant lace design.",
+    "image": "https://example.com/images/door_curtain.jpg",
+    "price": 35.00,
+    "stock": 40
+  },
+  {
+    "category": "Sanitaryware",
+    "subcategory": "Wash Basins",
+    "type": "Ceramic",
+    "name": "White Ceramic Wash Basin",
+    "details": "Durable ceramic basin with sleek design.",
+    "image": "https://example.com/images/ceramic_washbasin.jpg",
+    "price": 75.50,
+    "stock": 60
+  },
+  {
+    "category": "Sanitaryware",
+    "subcategory": "Wash Basins",
+    "type": "Glass",
+    "name": "Tempered Glass Wash Basin",
+    "details": "Modern glass basin for contemporary bathrooms.",
+    "image": "https://example.com/images/glass_washbasin.jpg",
+    "price": 90.00,
+    "stock": 35
+  },
+  {
+    "category": "Sanitaryware",
+    "subcategory": "Toilets",
+    "type": "Wall Mounted",
+    "name": "Compact Wall Mounted Toilet",
+    "details": "Space-saving toilet with dual flush system.",
+    "image": "https://example.com/images/wall_mounted_toilet.jpg",
+    "price": 150.00,
+    "stock": 20
+  },
+  {
+    "category": "Sanitaryware",
+    "subcategory": "Toilets",
+    "type": "Floor Mounted",
+    "name": "Classic Floor Mounted Toilet",
+    "details": "Traditional floor mounted toilet with strong flush.",
+    "image": "https://example.com/images/floor_mounted_toilet.jpg",
+    "price": 130.00,
+    "stock": 30
+  },
+  {
+    "category": "Home Textile",
+    "subcategory": "Pillows",
+    "type": "Memory Foam",
+    "name": "Ergonomic Memory Foam Pillow",
+    "details": "Provides excellent neck support for comfortable sleep.",
+    "image": "https://example.com/images/memory_foam_pillow.jpg",
+    "price": 25.00,
+    "stock": 100
+  },
+  {
+    "category": "Home Textile",
+    "subcategory": "Pillows",
+    "type": "Feather",
+    "name": "Soft Feather Pillow",
+    "details": "Filled with soft feathers for plush comfort.",
+    "image": "https://example.com/images/feather_pillow.jpg",
+    "price": 30.00,
+    "stock": 80
+  }
+]
