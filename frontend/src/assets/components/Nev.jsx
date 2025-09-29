@@ -30,7 +30,7 @@ const Nev = () => {
   };
 
   return (
-    <nav className="bg-gray-900 text-gray-200 shadow-md rounded-b-lg md:rounded-none sticky top-0 z-50 font-mono w-full">
+    <nav className="bg-gray-800 text-gray-200 shadow-md rounded-b-lg md:rounded-none sticky top-0 z-50 font-mono w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-between items-center py-3">
           {/* Logo & Mobile Menu Toggle */}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import img from '../img/moon.gif'
+import img from '../img/city.jpg'
 const containerVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -45,10 +45,10 @@ const styles = {
     page: {
         minHeight: '50vh',
          background: `
-      linear-gradient(135deg, rgba(30,60,114,0.8), rgba(42,82,152,0.8)),
+      linear-gradient(135deg, rgba(222, 226, 225, 0.9), rgba(255, 255, 255, 0.64)),
       url(${img}) center/cover no-repeat
-    `,
-        color: 'white',
+    `,  
+        color:  `rgba(0, 0, 0, 1)`,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
