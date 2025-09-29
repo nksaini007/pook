@@ -5,7 +5,7 @@
     "type": "Cotton",
     "name": "Premium Cotton Bedsheet",
     "details": "Soft and breathable 100% cotton bedsheet, available in queen and king sizes.",
-    "image": "https://example.com/images/cotton_bedsheet.jpg",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.BSpgrh8PiQ5FsxeYVDHPPgHaHa?w=900&h=900&rs=1&pid=ImgDetMain&o=7&rm=3",
     "price": 29.99,
     "stock": 120
   },
@@ -15,7 +15,7 @@
     "type": "Silk",
     "name": "Luxury Silk Bedsheet",
     "details": "Smooth silk bedsheet for a royal sleeping experience.",
-    "image": "https://example.com/images/silk_bedsheet.jpg",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.BxX47PuYleeHrJBx7lePfgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3",
     "price": 59.99,
     "stock": 50
   },
@@ -45,7 +45,17 @@
     "type": "Ceramic",
     "name": "White Ceramic Wash Basin",
     "details": "Durable ceramic basin with sleek design.",
-    "image": "https://example.com/images/ceramic_washbasin.jpg",
+    "image": "https://tiimg.tistatic.com/fp/1/007/541/white-heavy-duty-table-top-rectangular-shaped-ceramic-wash-basin-461.jpg",
+    "price": 75.50,
+    "stock": 60
+  },
+  {
+    "category": "Sanitaryware",
+    "subcategory": "Wash Basins",
+    "type": "Ceramic",
+    "name": "black Ceramic Wash Basin",
+    "details": "Durable ceramic basin with sleek design.",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/2/WN/HX/XT/8590647/black-ceramic-wash-basin-1000x1000.jpg",
     "price": 75.50,
     "stock": 60
   },
@@ -55,7 +65,7 @@
     "type": "Glass",
     "name": "Tempered Glass Wash Basin",
     "details": "Modern glass basin for contemporary bathrooms.",
-    "image": "https://example.com/images/glass_washbasin.jpg",
+    "image": "https://i.pinimg.com/736x/6d/e9/cd/6de9cd88590a7d6dcbce8eceae169113.jpg",
     "price": 90.00,
     "stock": 35
   },
@@ -65,7 +75,7 @@
     "type": "Wall Mounted",
     "name": "Compact Wall Mounted Toilet",
     "details": "Space-saving toilet with dual flush system.",
-    "image": "https://example.com/images/wall_mounted_toilet.jpg",
+    "image": "https://images-cdn.ubuy.co.in/65ec02dfe366f77e5845e498-simple-project-one-piece-wall-mount.jpg",
     "price": 150.00,
     "stock": 20
   },
@@ -75,7 +85,7 @@
     "type": "Floor Mounted",
     "name": "Classic Floor Mounted Toilet",
     "details": "Traditional floor mounted toilet with strong flush.",
-    "image": "https://example.com/images/floor_mounted_toilet.jpg",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.QWRW5-H6lRCCscEJjgpQcAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
     "price": 130.00,
     "stock": 30
   },
@@ -85,7 +95,7 @@
     "type": "Memory Foam",
     "name": "Ergonomic Memory Foam Pillow",
     "details": "Provides excellent neck support for comfortable sleep.",
-    "image": "https://example.com/images/memory_foam_pillow.jpg",
+    "image": "https://m.media-amazon.com/images/I/71v7TZosmFL._AC_SL1500_.jpg",
     "price": 25.00,
     "stock": 100
   },
@@ -95,7 +105,7 @@
     "type": "Feather",
     "name": "Soft Feather Pillow",
     "details": "Filled with soft feathers for plush comfort.",
-    "image": "https://example.com/images/feather_pillow.jpg",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2023/9/341444727/MB/NK/QE/41058758/down-feather-pillows-10-down-500x500.jpg",
     "price": 30.00,
     "stock": 80
   }
