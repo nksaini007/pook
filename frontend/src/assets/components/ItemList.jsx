@@ -51,7 +51,11 @@ const ItemList = () => {
             <h2 className="text-2xl font-semibold mb-6 text-gray-200">Product Details</h2>
             <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
               {mainProducts.map((product, index) => (
-                 <Link to=''>
+                   <Link
+                  key={index}
+                  to={`/category/${categoryName}/${itemName}/${itemList}/${product.id}`}
+                  className="bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-1 duration-300 block"
+                >
                     <div
                   key={index}
                   className="bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-1 duration-300"

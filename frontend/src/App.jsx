@@ -9,7 +9,7 @@ import NotFound404 from './assets/components/NotFound404'
 import CategoryPage from './assets/components/CategoryPage'
 import ItemPage from './assets/components/ItemPage'
 import ItemList from './assets/components/ItemList'
-// import ProductPage from './assets/components/ProductPage'
+import ProductPage from './assets/components/ProductPage'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -23,7 +23,7 @@ function App() {
         <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/category/:categoryName/:itemName" element={<ItemPage />} /> 
          <Route path="/category/:categoryName/:itemName/:itemList" element={<ItemList />} />
-         {/* <Route path="/category/:categoryName/:itemName/:itemList/:productName" element={<ProductPage />} /> */}
+         <Route path="/category/:categoryName/:itemName/:itemList/:productName" element={<ProductPage />} />
     
 
       </Routes>
