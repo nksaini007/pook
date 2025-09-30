@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import productdata from '../json/Products.json';
-import Nev from './Nev';
-import Footer from './Footer';
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
+import productdata from "../json/Products.json";
+import Nev from "./Nev";
+import Footer from "./Footer";
 import { CartContext } from "../context/CartContext";
+import { Star, CheckCircle, XCircle } from "lucide-react";
 
 const ProductPage = () => {
   const { addToCart } = useContext(CartContext);
@@ -11,12 +12,14 @@ const ProductPage = () => {
   const productId = parseInt(productName, 10);
   const productInfo = productdata.find((product) => product.id === productId);
 
-  const [added, setAdded] = useState(false); // Feedback state
+  const [added, setAdded] = useState(false);
 
   if (!productInfo) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
-        <h2 className="text-2xl font-semibold text-red-500">Product not found.</h2>
+      <div className="flex items-center justify-center h-screen bg-gradient-to-br from-gray-50 to-gray-100 text-gray-700">
+        <h2 className="text-3xl font-bold text-red-500 animate-pulse">
+          ❌ Product not found.
+        </h2>
       </div>
     );
   }
@@ -24,60 +27,139 @@ const ProductPage = () => {
   const handleAddToCart = (product) => {
     addToCart(product);
     setAdded(true);
-    setTimeout(() => setAdded(false), 1500); // Hide feedback after 1.5s
+    setTimeout(() => setAdded(false), 2000);
   };
 
   return (
     <>
       <Nev />
-      <div className="bg-gray-900 min-h-screen py-10 px-4 text-white">
-        <div className="max-w-6xl mx-auto bg-gray-800 rounded-xl shadow-2xl overflow-hidden md:flex md:space-x-10 p-6 md:p-10 transition-all duration-300">
+      <div className="bg-gradient-to-br from-white via-gray-50 to-gray-100 min-h-screen py-4 px-4 text-gray-800">
+        <div className="max-w-7xl mx-auto bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl overflow-hidden md:flex md:space-x-10 p-8 md:p-12 transition-all duration-500 hover:shadow-yellow-200/20">
+          
           {/* Product Image */}
-          <div className="md:w-1/2">
+          <div className="md:w-1/2 flex items-center justify-center">
             <img
               src={productInfo.image}
               alt={productInfo.name}
-              className="rounded-lg w-full object-cover h-full shadow-lg transition-transform duration-300 hover:scale-105"
+              className="rounded-2xl w-full h-full object-cover shadow-md transition-transform duration-500 hover:scale-105 hover:rotate-1"
             />
           </div>
 
           {/* Product Info */}
           <div className="md:w-1/2 flex flex-col justify-between mt-6 md:mt-0">
             <div>
-              <h1 className="text-4xl font-bold mb-4 text-white">{productInfo.name}</h1>
-              <p className="text-gray-300 mb-6">{productInfo.details}</p>
-              <p className="text-3xl font-extrabold text-green-400 mb-2">₹{productInfo.price.toFixed(2)}</p>
-              <p className={`font-medium ${productInfo.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                {productInfo.stock > 0 ? `${productInfo.stock} in stock` : 'Out of stock'}
+              {/* Name & Brand */}
+              <h1 className="text-3xl font-century-gothic mb-3 text-gray-800">
+                {productInfo.name}
+              </h1>
+              <p className="text-lg text-gray-600 mb-4">
+                Brand: <span className="text-blue-500 font-semibold">{productInfo.brand}</span>
               </p>
+
+              {/* Rating */}
+              <div className="flex items-center gap-1 mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`h-6 w-6 transition-all ${
+                      i < Math.floor(productInfo.rating)
+                        ? "text-yellow-400 drop-shadow-md"
+                        : "text-gray-300"
+                    }`}
+                    fill={i < Math.floor(productInfo.rating) ? "currentColor" : "none"}
+                  />
+                ))}
+                <span className="ml-3 text-sm text-gray-500">
+                  ({productInfo.reviews} reviews)
+                </span>
+              </div>
+
+              {/* Price & Stock */}
+              <p className="text-4xl font-extrabold text-gray-500 mb-3">
+                ₹{productInfo.price.toFixed(2)}
+              </p>
+              <p
+                className={`font-medium flex items-center gap-2 ${
+                  productInfo.stock > 0 ? "text-green-600" : "text-red-500"
+                }`}
+              >
+                {productInfo.stock > 0 ? (
+                  <>
+                    <CheckCircle className="h-5 w-5" /> {productInfo.stock} in stock
+                  </>
+                ) : (
+                  <>
+                    <XCircle className="h-5 w-5" /> Out of stock
+                  </>
+                )}
+              </p>
+
+              {/* Details */}
+              <p className="text-gray-600 mt-6 leading-relaxed">{productInfo.details}</p>
+
+              {/* Features */}
+              <div className="mt-6">
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">Features:</h3>
+                <div className="flex flex-wrap gap-3">
+                  {productInfo.features.map((feature, idx) => (
+                    <span
+                      key={idx}
+                      className="bg-gray-100 text-gray-800 px-4 py-1 rounded-full text-sm shadow-sm hover:shadow-md hover:scale-105 transition"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Specifications */}
+              <div className="mt-8 grid grid-cols-2 gap-4 text-sm text-gray-700 bg-gray-50/50 backdrop-blur-md p-4 rounded-xl shadow-inner">
+                <p><span className="font-semibold text-gray-900">Category:</span> {productInfo.category}</p>
+                <p><span className="font-semibold text-gray-900">Subcategory:</span> {productInfo.subcategory}</p>
+                <p><span className="font-semibold text-gray-900">Type:</span> {productInfo.type}</p>
+                <p><span className="font-semibold text-gray-900">Material:</span> {productInfo.material}</p>
+                <p><span className="font-semibold text-gray-900">Color:</span> {productInfo.color}</p>
+                <p><span className="font-semibold text-gray-900">Dimensions:</span> {productInfo.dimensions}</p>
+                <p><span className="font-semibold text-gray-900">Weight:</span> {productInfo.weight}</p>
+                <p><span className="font-semibold text-gray-900">Warranty:</span> {productInfo.warranty}</p>
+                <p><span className="font-semibold text-gray-900">Origin:</span> {productInfo.origin}</p>
+              </div>
+
+              {/* Care Instructions */}
+              <div className="mt-8">
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">Care Instructions:</h3>
+                <p className="text-gray-600">{productInfo.care_instructions}</p>
+              </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-6 relative">
+            <div className="flex flex-col sm:flex-row gap-4 mt-10 relative">
               <button
                 onClick={() => handleAddToCart(productInfo)}
-                className={`flex items-center justify-center bg-blue-600 hover:bg-blue-300 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition transform ${
-                  added ? 'scale-105' : ''
+                className={`flex items-center justify-center bg-gray-400 hover:from-blue-300 hover:to-cyan-300 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition transform ${
+                  added ? "scale-105" : ""
                 }`}
                 disabled={productInfo.stock === 0}
               >
                 Add to Cart
               </button>
-              {added && (
-                <span className="absolute top-[-30px] left-1/2 -translate-x-1/2 bg-green-500 text-white px-3 py-1 rounded-full text-sm animate-bounce">
-                  Added!
-                </span>
-              )}
               <button
                 onClick={() => {
                   handleAddToCart(productInfo);
-                  window.location.href = "/cart"; // redirect to cart
+                  window.location.href = "/cart";
                 }}
-                className="flex items-center justify-center bg-green-600 hover:bg-green-400 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition disabled:opacity-50"
+                className="flex items-center justify-center bg-orange-400 hover:from-green-300 hover:to-emerald-300 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition disabled:opacity-50"
                 disabled={productInfo.stock === 0}
               >
-                Buy Now
+               Buy Now
               </button>
+
+              {/* Toast Notification */}
+              {added && (
+                <div className="absolute -top-14 left-1/2 -translate-x-1/2 bg-gray-300 text-white px-4 py-2 rounded-full shadow-lg animate-bounce">
+                  Added to Cart!
+                </div>
+              )}
             </div>
           </div>
         </div>

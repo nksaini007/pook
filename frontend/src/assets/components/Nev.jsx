@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { FaSearch, FaShoppingCart, FaArtstation } from 'react-icons/fa';
-import img from '../img/profile.gif';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { FaSearch, FaShoppingCart, FaArtstation } from "react-icons/fa";
+import img from "../img/profile.gif";
+import { Link } from "react-router-dom";
 
 // Profile icon with tooltip
 const ProfileIcon = () => (
@@ -13,9 +13,9 @@ const ProfileIcon = () => (
     <img
       src={img}
       alt="Profile"
-      className="w-8 h-8 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:shadow-lg"
+      className="w-9 h-9 rounded-full border-2 border-green-400/70 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
     />
-    <div className="absolute top-10 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 group-focus-within:scale-100 transition-transform duration-200 bg-gray-800 text-white px-3 py-1 rounded-md text-xs shadow-md whitespace-nowrap z-20">
+    <div className="absolute top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 bg-gray-100 text-gray-800 px-3 py-1 rounded-md text-xs shadow-md whitespace-nowrap z-20">
       Profile
     </div>
   </div>
@@ -23,7 +23,7 @@ const ProfileIcon = () => (
 
 const Nev = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -31,22 +31,23 @@ const Nev = () => {
   };
 
   return (
-    <nav className="bg-gray-800 text-gray-200 shadow-md md:rounded-none top-0 z-50 font-mono w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap justify-between items-center py-3">
-          {/* Logo & Mobile Menu Toggle */}
-          <div className="flex justify-between items-center w-full md:w-auto">
-            <div className="text-2xl font-bold text-gray-100 tracking-widest">
-              <FaArtstation />
+    <nav className="bg-white/95 backdrop-blur-md text-gray-800 shadow-md top-0 z-50 font-sans w-full border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo & Mobile Toggle */}
+          <div className="flex items-center justify-between w-full md:w-auto">
+            <div className="flex items-center gap-2 text-xl font-bold tracking-wide text-green-600">
+              <FaArtstation className="text-2xl text-gray-300" />
+              <span className="text-gray-800">Pook</span>
             </div>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-200 md:hidden hover:text-pink-400 focus:outline-none"
+              className="text-gray-700 md:hidden hover:text-green-600 focus:outline-none"
             >
               <svg
-                className="h-6 w-6"
+                className="h-7 w-7"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -71,33 +72,30 @@ const Nev = () => {
           </div>
 
           {/* Search Bar */}
-          <form
-            onSubmit={handleSearch}
-            className="relative w-full md:w-1/3 mt-3 md:mt-0"
-          >
+          {/* <form onSubmit={handleSearch} className="relative hidden md:flex w-1/3">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border border-3 rounded-full text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder:text-gray-500"
-              placeholder="Search..."
+              className="w-full px-4 py-2 rounded-full bg-gray-100 text-gray-800 text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 placeholder:text-gray-500 transition-all duration-300 focus:shadow"
+              placeholder="Search for products..."
             />
             <button
               type="submit"
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 hover:text-pink-500"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-green-600 transition"
             >
               <FaSearch />
             </button>
-          </form>
+          </form> */}
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6 items-center mt-3 md:mt-0">
-            {['Home', 'Appliances', 'Raw Materials', 'Services', 'Contact'].map(
+          <div className="hidden md:flex items-center gap-6">
+            {["Home", "Appliances", "RawMaterials", "Services", "Contact"].map(
               (item, index) => (
                 <a
                   key={index}
                   href="#"
-                  className="hover:text-pink-400 transition-colors duration-200"
+                  className="relative text-gray-700 hover:text-green-600 transition-colors duration-300 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-green-500 after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {item}
                 </a>
@@ -106,14 +104,14 @@ const Nev = () => {
 
             <Link
               to="/cart"
-              className="ml-4 px-4 py-1 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-500 hover:text-gray-100 transition-colors duration-200 flex items-center gap-2"
+              className="px-4 py-1.5 rounded-full bg-orange-400 text-white font-medium hover:bg-green-600 transition shadow-sm flex items-center gap-2"
             >
               <FaShoppingCart /> Cart
             </Link>
 
             <a
               href="/login"
-              className="ml-4 px-4 py-1 rounded-full bg-pink-600 text-white font-semibold hover:bg-green-300 hover:text-gray-900 transition-colors duration-200"
+              className="px-4 py-1.5 rounded-full bg-gray-200 text-gray-800 font-medium hover:bg-green-100 hover:text-green-700 transition shadow-sm"
             >
               Login
             </a>
@@ -123,15 +121,31 @@ const Nev = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown Navigation */}
+      {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden px-4 pt-4 pb-6 bg-gray-800 space-y-4 text-base font-medium">
-          {['Home', 'Appliances', 'Raw Materials', 'Services', 'Contact'].map(
+        <div className="md:hidden px-6 pb-6 bg-white space-y-4 text-base font-medium rounded-b-xl shadow-md animate-fadeIn">
+          <form onSubmit={handleSearch} className="relative w-full mb-4">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-4 py-2 rounded-full bg-gray-100 text-gray-800 text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 placeholder:text-gray-500"
+              placeholder="Search..."
+            />
+            <button
+              type="submit"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-green-600"
+            >
+              <FaSearch />
+            </button>
+          </form>
+
+          {["Home", "Appliances", "Raw Materials", "Services", "Contact"].map(
             (item, index) => (
               <a
                 key={index}
                 href="#"
-                className="block text-gray-200 hover:text-pink-400 transition-colors"
+                className="block text-gray-700 hover:text-green-600 transition-colors"
               >
                 {item}
               </a>
@@ -140,14 +154,14 @@ const Nev = () => {
 
           <Link
             to="/cart"
-            className="block mt-4 px-5 py-2 rounded-full bg-blue-600 text-white text-center font-semibold hover:bg-blue-500 transition"
+            className="block px-5 py-2 rounded-full bg-orange-500 text-white text-center font-medium hover:bg-orange-600 transition shadow-sm"
           >
-            Cart
+            <FaShoppingCart className="inline mr-2" /> Cart
           </Link>
 
           <a
             href="/login"
-            className="block mt-4 px-5 py-2 rounded-full bg-pink-600 text-white text-center font-semibold hover:bg-pink-400 transition"
+            className="block px-5 py-2 rounded-full bg-gray-200 text-gray-800 text-center font-medium hover:bg-green-100 hover:text-green-700 transition shadow-sm"
           >
             Login
           </a>

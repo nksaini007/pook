@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import img from '../img/city.jpg'
+import img from '../img/city.jpg';
+import { FaSearch } from "react-icons/fa";
+
 const containerVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -21,6 +23,13 @@ const itemVariants = {
 };
 
 const LandingPage = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        alert(`Searching for: ${searchQuery}`);
+    };
+
     return (
         <div style={styles.page}>
             <motion.div
@@ -33,9 +42,31 @@ const LandingPage = () => {
                     Welcome to <span style={styles.highlight}>pook</span>
                 </motion.h1>
                 <motion.p variants={itemVariants} style={styles.subtext}>
-                  sketch your coordinates. 
+                    Sketch your coordinates.
                 </motion.p>
-               
+
+                {/* Search Bar */}
+                <motion.form 
+                    variants={itemVariants} 
+                    style={styles.searchForm}
+                    onSubmit={handleSearch}
+                >
+                    <div className="relative w-full max-w-md mx-auto">
+                        <input
+                            type="text"
+                            placeholder="Search for products..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full px-4 py-3 rounded-full bg-gray-100 text-gray-800 text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 placeholder:text-gray-500 transition-all duration-300 focus:shadow"
+                        />
+                        <button
+                            type="submit"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-green-600 transition"
+                        >
+                            <FaSearch />
+                        </button>
+                    </div>
+                </motion.form>
             </motion.div>
         </div>
     );
@@ -43,12 +74,12 @@ const LandingPage = () => {
 
 const styles = {
     page: {
-        minHeight: '50vh',
-         background: `
-      linear-gradient(135deg, rgba(222, 226, 225, 0.9), rgba(255, 255, 255, 0.64)),
-      url(${img}) center/cover no-repeat
-    `,  
-        color:  `rgba(0, 0, 0, 1)`,
+        minHeight: '70vh',
+        background: `
+            linear-gradient(135deg, rgba(222, 226, 225, 0.9), rgba(255, 255, 255, 0.64)),
+            url(${img}) center/cover no-repeat
+        `,
+        color: 'rgba(0, 0, 0, 1)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -70,16 +101,11 @@ const styles = {
         fontSize: '1.25rem',
         marginBottom: '2rem'
     },
-    button: {
-        backgroundColor: '#FFD700',
-        color: '#1e3c72',
-        padding: '0.75rem 2rem',
-        borderRadius: '50px',
-        textDecoration: 'none',
-        fontWeight: 'bold',
-        fontSize: '1rem',
-        display: 'inline-block',
-        transition: 'all 0.3s ease'
+    searchForm: {
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '0.5rem',
+        flexWrap: 'wrap'
     }
 };
 
