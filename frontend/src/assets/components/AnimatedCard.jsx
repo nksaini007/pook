@@ -33,7 +33,7 @@ const LandingPage = () => {
                     Welcome to <span style={styles.highlight}>pook</span>
                 </motion.h1>
                 <motion.p variants={itemVariants} style={styles.subtext}>
-                    Build Home with us
+                  sketch your coordinates. 
                 </motion.p>
                
             </motion.div>

@@ -5,8 +5,8 @@ import cetogry from "../json/Itom.json";
 
 const TrendingItems = () => {
   return (
-    <section className="py-6 px-4 bg-slate-900">
-      <h2 className="text-2xl font-bold text-white mb-4">
+    <section className="py-3 px-5 bg-gray-100">
+      <h2 className="text-2xl font-bold text-gray-500 mb-4">
          Trending Items for you
       </h2>
 
@@ -15,7 +15,7 @@ const TrendingItems = () => {
         {cetogry.map((item) => (
           <div
             key={item.id}
-            className="min-w-[160px] sm:min-w-[200px] bg-slate-800 rounded-xl p-3 shadow hover:shadow-lg transition transform hover:-translate-y-1 flex-shrink-0"
+            className="min-w-[160px] sm:min-w-[200px] bg-white rounded-lg p-3 shadow hover:shadow-lg transition transform hover:-translate-y-1 flex-shrink-0"
           >
             <div className="h-32 w-full overflow-hidden rounded-md mb-3">
               <img
@@ -24,7 +24,7 @@ const TrendingItems = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h3 className="text-white text-sm sm:text-base font-semibold mb-1">
+            <h3 className="text-gray-500 text-sm sm:text-base font-semibold mb-1">
               {item.name}
             </h3>
             <p className="text-pink-400 text-sm font-bold">{item.price}</p>

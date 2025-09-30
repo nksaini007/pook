@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import img from '../img/profile.gif';
+import { FaArtstation } from "react-icons/fa";
 
 // Profile icon with tooltip
 const ProfileIcon = () => (
@@ -30,13 +31,13 @@ const Nev = () => {
   };
 
   return (
-    <nav className="bg-gray-800 text-gray-200 shadow-md rounded-b-lg md:rounded-none sticky top-0 z-50 font-mono w-full">
+    <nav className="bg-gray-800 text-gray-200 shadow-md  md:rounded-none  top-0 z-50 font-mono w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-between items-center py-3">
           {/* Logo & Mobile Menu Toggle */}
           <div className="flex justify-between items-center w-full md:w-auto">
-            <div className="text-2xl font-bold text-pink-500 tracking-widest">
-              pook.in
+            <div className="text-2xl font-bold text-gray-100 tracking-widest">
+             <FaArtstation/>
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -78,7 +79,7 @@ const Nev = () => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 rounded-full text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder:text-gray-500"
+              className="w-full px-4 py-2 border border-3 rounded-full text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder:text-gray-500"
               placeholder="Search..."
             />
             <button

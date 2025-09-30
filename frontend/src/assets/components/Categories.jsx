@@ -110,56 +110,62 @@
 
 // export default Categories;
 
-
 import React from "react";
 import cetogry from "../json/Catogry.json";
 import { Link } from "react-router-dom";
+
 const Categories = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] overflow-hidden p-6">
-      {/* Light glow blobs */}
-      <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-purple-500 opacity-20 rounded-full blur-[100px] z-0" />
-      <div className="absolute bottom-[-80px] right-[-80px] w-[250px] h-[250px] bg-pink-500 opacity-20 rounded-full blur-[100px] z-0" />
+      {/* 🔹 Light glow blobs */}
+      <div className="absolute top-[-120px] left-[-120px] w-[320px] h-[320px] bg-purple-500 opacity-30 rounded-full blur-[120px] z-0" />
+      <div className="absolute bottom-[-100px] right-[-100px] w-[280px] h-[280px] bg-pink-500 opacity-30 rounded-full blur-[120px] z-0" />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-10">
-          Explore Categories
+      {/* 🔹 Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <h2 className="text-4xl sm:text-5xl font-century text-white text-center mb-14 drop-shadow-lg">
+         Explore Categories 
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* 🔹 Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {cetogry.homeCategories.map((category) => (
-        <Link to={`/category/${category.name}`}>
-            <div
-              key={category.id}
-              className="relative group bg-white/10 backdrop-blur-md rounded-xl p-6 flex flex-col justify-between hover:shadow-[0_20px_50px_rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1"
-            >
-              {/* Image */}
-              <div className="h-48 w-full mb-6 overflow-hidden rounded-lg"> {/* Increased height to 192px */}
-                <img
-                  src={category.image}
-                  alt={category.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
+            <Link key={category.id} to={`/category/${category.name}`}>
+              <div className="relative group bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden shadow-lg border border-white/10 transition-all duration-500 hover:scale-[1.04] hover:shadow-pink-500/30 flex flex-col h-full">
+                
+                {/* Image */}
+                <div className="h-56 w-full overflow-hidden">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
 
-              {/* Title */}
-              <h3 className="text-xl font-semibold text-white mb-3 text-center group-hover:text-pink-400 transition">
-                {category.name}
-              </h3>
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-gray-200 text-center mb-4 group-hover:text-pink-400 transition-colors">
+                    {category.name}
+                  </h3>
 
-              {/* Subcategories */}
-              <div className="grid grid-cols-2 gap-2 mt-auto">
-                {category.subcategories.map((sub, idx) => (
-                  <span
-                    key={idx}
-                    className="text-white text-xs bg-white/20 px-3 py-1 rounded-full text-center backdrop-blur-sm hover:bg-pink-500 hover:text-white transition-all cursor-pointer"
-                  >
-                    {sub}
-                  </span>
-                ))}
+                  {/* Subcategories */}
+                  <div className="grid grid-cols-2 gap-3 mt-auto">
+                    {category.subcategories.map((sub, idx) => (
+                      <span
+                        key={idx}
+                        className="text-sm font-medium text-white/90 bg-white/20 px-3 py-1.5 rounded-full text-center backdrop-blur-sm border border-white/10 hover:bg-pink-500 hover:border-pink-400 hover:text-white transition-all cursor-pointer"
+                      >
+                        {sub}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Hover glow overlay */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition duration-500 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500" />
               </div>
-            </div></Link>
+            </Link>
           ))}
         </div>
       </div>
@@ -168,5 +174,3 @@ const Categories = () => {
 };
 
 export default Categories;
-
-

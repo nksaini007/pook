@@ -76,7 +76,7 @@ const ProductPage = () => {
               {/* Price & Stock */}
               <div className="mb-6">
                 <p className="text-3xl font-extrabold text-green-400 mb-2">
-                  ${productInfo.price.toFixed(2)}
+                  ₹{productInfo.price.toFixed(2)}
                 </p>
                 <p className={`font-medium ${productInfo.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
                   {productInfo.stock > 0
