@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaShoppingCart, FaArtstation } from 'react-icons/fa';
 import img from '../img/profile.gif';
-import { FaArtstation } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 // Profile icon with tooltip
 const ProfileIcon = () => (
@@ -31,13 +31,13 @@ const Nev = () => {
   };
 
   return (
-    <nav className="bg-gray-800 text-gray-200 shadow-md  md:rounded-none  top-0 z-50 font-mono w-full">
+    <nav className="bg-gray-800 text-gray-200 shadow-md md:rounded-none top-0 z-50 font-mono w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-between items-center py-3">
           {/* Logo & Mobile Menu Toggle */}
           <div className="flex justify-between items-center w-full md:w-auto">
             <div className="text-2xl font-bold text-gray-100 tracking-widest">
-             <FaArtstation/>
+              <FaArtstation />
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -104,6 +104,13 @@ const Nev = () => {
               )
             )}
 
+            <Link
+              to="/cart"
+              className="ml-4 px-4 py-1 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-500 hover:text-gray-100 transition-colors duration-200 flex items-center gap-2"
+            >
+              <FaShoppingCart /> Cart
+            </Link>
+
             <a
               href="/login"
               className="ml-4 px-4 py-1 rounded-full bg-pink-600 text-white font-semibold hover:bg-green-300 hover:text-gray-900 transition-colors duration-200"
@@ -130,6 +137,13 @@ const Nev = () => {
               </a>
             )
           )}
+
+          <Link
+            to="/cart"
+            className="block mt-4 px-5 py-2 rounded-full bg-blue-600 text-white text-center font-semibold hover:bg-blue-500 transition"
+          >
+            Cart
+          </Link>
 
           <a
             href="/login"

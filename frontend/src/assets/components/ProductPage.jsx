@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import productdata from '../json/Products.json';
 import Nev from './Nev';
 import Footer from './Footer';
+import { CartContext } from "../context/CartContext";
 
 const ProductPage = () => {
-  const { categoryName, itemName, productName } = useParams();
+  const { addToCart } = useContext(CartContext);
+  const { productName } = useParams();
   const productId = parseInt(productName, 10);
   const productInfo = productdata.find((product) => product.id === productId);
+
+  const [added, setAdded] = useState(false); // Feedback state
 
   if (!productInfo) {
     return (
@@ -16,6 +20,12 @@ const ProductPage = () => {
       </div>
     );
   }
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500); // Hide feedback after 1.5s
+  };
 
   return (
     <>
@@ -35,74 +45,35 @@ const ProductPage = () => {
           <div className="md:w-1/2 flex flex-col justify-between mt-6 md:mt-0">
             <div>
               <h1 className="text-4xl font-bold mb-4 text-white">{productInfo.name}</h1>
-
-              {/* Basic Info */}
-              <div className="text-sm text-gray-400 mb-4 space-y-1">
-                <p><span className="text-gray-500">Brand:</span> {productInfo.brand}</p>
-                <p><span className="text-gray-500">Category:</span> {productInfo.category}</p>
-                <p><span className="text-gray-500">Subcategory:</span> {productInfo.subcategory}</p>
-                <p><span className="text-gray-500">Type:</span> {productInfo.type}</p>
-                <p><span className="text-gray-500">Material:</span> {productInfo.material}</p>
-                <p><span className="text-gray-500">Color:</span> {productInfo.color}</p>
-                <p><span className="text-gray-500">Dimensions:</span> {productInfo.dimensions}</p>
-                <p><span className="text-gray-500">Weight:</span> {productInfo.weight}</p>
-                <p><span className="text-gray-500">Origin:</span> {productInfo.origin}</p>
-                <p><span className="text-gray-500">Warranty:</span> {productInfo.warranty}</p>
-              </div>
-
-              {/* Description */}
-              <p className="text-gray-300 mb-6 leading-relaxed">{productInfo.details}</p>
-
-              {/* Features */}
-              {productInfo.features && productInfo.features.length > 0 && (
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">Features:</h3>
-                  <ul className="list-disc list-inside text-gray-300 space-y-1">
-                    {productInfo.features.map((feature, index) => (
-                      <li key={index}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Care Instructions */}
-              {productInfo.care_instructions && (
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-white mb-2">Care Instructions:</h3>
-                  <p className="text-gray-300">{productInfo.care_instructions}</p>
-                </div>
-              )}
-
-              {/* Price & Stock */}
-              <div className="mb-6">
-                <p className="text-3xl font-extrabold text-green-400 mb-2">
-                  ₹{productInfo.price.toFixed(2)}
-                </p>
-                <p className={`font-medium ${productInfo.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                  {productInfo.stock > 0
-                    ? `${productInfo.stock} in stock`
-                    : 'Out of stock'}
-                </p>
-              </div>
-
-              {/* Rating */}
-              <div className="mb-6">
-                <p className="text-yellow-400 font-semibold">
-                  ⭐ {productInfo.rating} / 5 ({productInfo.reviews} reviews)
-                </p>
-              </div>
+              <p className="text-gray-300 mb-6">{productInfo.details}</p>
+              <p className="text-3xl font-extrabold text-green-400 mb-2">₹{productInfo.price.toFixed(2)}</p>
+              <p className={`font-medium ${productInfo.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
+                {productInfo.stock > 0 ? `${productInfo.stock} in stock` : 'Out of stock'}
+              </p>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            <div className="flex flex-col sm:flex-row gap-4 mt-6 relative">
               <button
-                className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition disabled:opacity-50"
+                onClick={() => handleAddToCart(productInfo)}
+                className={`flex items-center justify-center bg-blue-600 hover:bg-blue-300 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition transform ${
+                  added ? 'scale-105' : ''
+                }`}
                 disabled={productInfo.stock === 0}
               >
                 Add to Cart
               </button>
+              {added && (
+                <span className="absolute top-[-30px] left-1/2 -translate-x-1/2 bg-green-500 text-white px-3 py-1 rounded-full text-sm animate-bounce">
+                  Added!
+                </span>
+              )}
               <button
-                className="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition disabled:opacity-50"
+                onClick={() => {
+                  handleAddToCart(productInfo);
+                  window.location.href = "/cart"; // redirect to cart
+                }}
+                className="flex items-center justify-center bg-green-600 hover:bg-green-400 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition disabled:opacity-50"
                 disabled={productInfo.stock === 0}
               >
                 Buy Now
