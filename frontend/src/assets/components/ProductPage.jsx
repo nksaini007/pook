@@ -33,27 +33,34 @@ const ProductPage = () => {
   return (
     <>
       <Nev />
-      <div className="bg-gradient-to-br from-white via-gray-50 to-gray-100 min-h-screen py-4 px-4 text-gray-800">
-        <div className="max-w-7xl mx-auto bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl overflow-hidden md:flex md:space-x-10 p-8 md:p-12 transition-all duration-500 hover:shadow-yellow-200/20">
+
+      {/* Full-Screen Container */}
+      <div className="bg-gradient-to-br from-white via-gray-50 to-gray-100 min-h-screen px-6 py-8 text-gray-800">
+        <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-10">
           
           {/* Product Image */}
-          <div className="md:w-1/2 flex items-center justify-center">
-            <img
-              src={productInfo.image}
-              alt={productInfo.name}
-              className="rounded-2xl w-full h-full object-cover shadow-md transition-transform duration-500 hover:scale-105 hover:rotate-1"
-            />
-          </div>
+        {/* Product Image */}
+<div className="flex   bg-white p-1 rounded-xl shadow-lg">
+  <img
+    src={productInfo.image}
+    alt={productInfo.name}
+    className="rounded-xl w-full max-h-[450px] object-contain shadow-md transition-transform duration-500 hover:scale-105 hover:rotate-1"
+  />
+</div>
+
 
           {/* Product Info */}
-          <div className="md:w-1/2 flex flex-col justify-between mt-6 md:mt-0">
+          <div className="flex flex-col justify-between bg-white p-8 rounded-xl shadow-lg">
             <div>
               {/* Name & Brand */}
-              <h1 className="text-3xl font-century-gothic mb-3 text-gray-800">
+              <h1 className="text-4xl font-bold mb-3 text-gray-800">
                 {productInfo.name}
               </h1>
               <p className="text-lg text-gray-600 mb-4">
-                Brand: <span className="text-blue-500 font-semibold">{productInfo.brand}</span>
+                Brand:{" "}
+                <span className="text-blue-500 font-semibold">
+                  {productInfo.brand}
+                </span>
               </p>
 
               {/* Rating */}
@@ -75,7 +82,7 @@ const ProductPage = () => {
               </div>
 
               {/* Price & Stock */}
-              <p className="text-4xl font-extrabold text-gray-500 mb-3">
+              <p className="text-4xl font-extrabold text-gray-700 mb-3">
                 ₹{productInfo.price.toFixed(2)}
               </p>
               <p
@@ -95,11 +102,15 @@ const ProductPage = () => {
               </p>
 
               {/* Details */}
-              <p className="text-gray-600 mt-6 leading-relaxed">{productInfo.details}</p>
+              <p className="text-gray-600 mt-6 leading-relaxed">
+                {productInfo.details}
+              </p>
 
               {/* Features */}
               <div className="mt-6">
-                <h3 className="text-xl font-semibold mb-3 text-gray-800">Features:</h3>
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">
+                  Features:
+                </h3>
                 <div className="flex flex-wrap gap-3">
                   {productInfo.features.map((feature, idx) => (
                     <span
@@ -113,7 +124,7 @@ const ProductPage = () => {
               </div>
 
               {/* Specifications */}
-              <div className="mt-8 grid grid-cols-2 gap-4 text-sm text-gray-700 bg-gray-50/50 backdrop-blur-md p-4 rounded-xl shadow-inner">
+              <div className="mt-8 grid grid-cols-2 gap-4 text-sm text-gray-700 bg-gray-50/70 p-4 rounded-xl shadow-inner">
                 <p><span className="font-semibold text-gray-900">Category:</span> {productInfo.category}</p>
                 <p><span className="font-semibold text-gray-900">Subcategory:</span> {productInfo.subcategory}</p>
                 <p><span className="font-semibold text-gray-900">Type:</span> {productInfo.type}</p>
@@ -127,7 +138,9 @@ const ProductPage = () => {
 
               {/* Care Instructions */}
               <div className="mt-8">
-                <h3 className="text-xl font-semibold mb-2 text-gray-800">Care Instructions:</h3>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                  Care Instructions:
+                </h3>
                 <p className="text-gray-600">{productInfo.care_instructions}</p>
               </div>
             </div>
@@ -136,7 +149,7 @@ const ProductPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 mt-10 relative">
               <button
                 onClick={() => handleAddToCart(productInfo)}
-                className={`flex items-center justify-center bg-gray-400 hover:from-blue-300 hover:to-cyan-300 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition transform ${
+                className={`flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition transform ${
                   added ? "scale-105" : ""
                 }`}
                 disabled={productInfo.stock === 0}
@@ -148,22 +161,23 @@ const ProductPage = () => {
                   handleAddToCart(productInfo);
                   window.location.href = "/cart";
                 }}
-                className="flex items-center justify-center bg-orange-400 hover:from-green-300 hover:to-emerald-300 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition disabled:opacity-50"
+                className="flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition disabled:opacity-50"
                 disabled={productInfo.stock === 0}
               >
-               Buy Now
+                Buy Now
               </button>
 
               {/* Toast Notification */}
               {added && (
-                <div className="absolute -top-14 left-1/2 -translate-x-1/2 bg-gray-300 text-white px-4 py-2 rounded-full shadow-lg animate-bounce">
-                  Added to Cart!
+                <div className="absolute -top-14 left-1/2 -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg animate-bounce">
+                  ✅ Added to Cart!
                 </div>
               )}
             </div>
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

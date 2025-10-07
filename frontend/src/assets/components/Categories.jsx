@@ -4,53 +4,46 @@ import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-white via-gray-100 to-white overflow-hidden p-6">
-      {/* Light glow blobs */}
-      <div className="absolute top-[-120px] left-[-120px] w-[320px] h-[320px] bg-yellow-300 opacity-20 rounded-full blur-[120px] z-0" />
-      <div className="absolute bottom-[-100px] right-[-100px] w-[280px] h-[280px] bg-green-300 opacity-20 rounded-full blur-[120px] z-0" />
-
+    <div className="relative min-h-screen bg-gray-100 overflow-hidden py-4 px-3">
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 text-center mb-14 drop-shadow-md">
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl  text-gray-500 text-center mb-8 ">
           Explore Categories
         </h2>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8">
+        {/* Grid → 2 on mobile, 3 on md, 4 on lg */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {cetogry.homeCategories.map((category) => (
-            <Link key={category.id} to={`/category/${category.name}`}>
-              <div className="relative group bg-white/30 backdrop-blur-lg rounded-2xl overflow-hidden shadow-lg border border-white/20 transition-all duration-500 hover:scale-[1.04] hover:shadow-yellow-300/40 flex flex-col h-full">
+            <Link key={category.id} to={`/category/${category.name}`} className="block">
+              <div className="group bg-white/30 backdrop-blur-lg rounded-xl overflow-hidden shadow-md border border-white/20 transition-all duration-300 hover:scale-105 flex flex-col h-full">
                 
-                {/* Image */}
-                <div className="h-56 w-full overflow-hidden rounded-t-2xl">
+                {/* Image (smaller) */}
+                <div className="h-28 sm:h-32 w-full overflow-hidden rounded-t-xl">
                   <img
                     src={category.image}
                     alt={category.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover p-1 rounded-lg drop-shadow-lg  transition-transform duration-900 group-hover:scale-110"
                   />
                 </div>
 
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-2xl font-bold text-gray-900 text-center mb-4 group-hover:text-yellow-500 transition-colors">
+                {/* Content (smaller padding + fonts) */}
+                <div className="p-3 flex flex-col flex-grow">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 text-center mb-2 group-hover:text-yellow-500 transition-colors truncate">
                     {category.name}
                   </h3>
 
-                  {/* Subcategories with fixed width */}
-                  <div className="flex flex-wrap justify-center gap-3 mt-auto">
-                    {category.subcategories.map((sub, idx) => (
+                  {/* Subcategories (smaller tags, max 4) */}
+                  <div className="flex flex-wrap justify-center gap-2 mt-auto">
+                    {category.subcategories.slice(0,6).map((sub, idx) => (
                       <span
                         key={idx}
-                        className="text-sm font-medium text-gray-800/90 bg-white/60 px-2 py-1 w-28 text-center rounded-lg backdrop-blur-sm border border-gray-200/40 hover:bg-yellow-500 hover:border-yellow-400 hover:text-white transition-all cursor-pointer shadow-sm truncate"
+                        className="text-xs font-medium text-gray-500 px-2 py-0.5 rounded-md hover:text-yellow-500 transition-colors truncate"
                       >
                         {sub}
                       </span>
                     ))}
                   </div>
                 </div>
-
-                {/* Hover glow overlay */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition duration-500 bg-gradient-to-br from-yellow-300 via-green-300 to-teal-300" />
               </div>
             </Link>
           ))}

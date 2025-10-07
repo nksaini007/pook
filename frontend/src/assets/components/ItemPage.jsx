@@ -45,7 +45,7 @@ function ItemPage() {
 
           {/* Heading */}
           <h1 className="relative text-5xl font-extrabold bg-gray-400 bg-clip-text text-transparent drop-shadow-md">
-            {itemName} Types
+            {itemName} 
           </h1>
 
           {/* Subtext */}
@@ -66,7 +66,7 @@ function ItemPage() {
         </div>
 
         {/* Types Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {types.length > 0 ? (
             types.map(({ type, image }, idx) => (
               <Link
@@ -79,7 +79,7 @@ function ItemPage() {
                   <img
                     src={image}
                     alt={`${type} ${itemName}`}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover p-1 rounded-xl"
                     loading="lazy"
                   />
                 ) : (

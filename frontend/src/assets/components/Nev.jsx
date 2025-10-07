@@ -38,7 +38,7 @@ const Nev = () => {
           <div className="flex items-center justify-between w-full md:w-auto">
             <div className="flex items-center gap-2 text-xl font-bold tracking-wide text-green-600">
               <FaArtstation className="text-2xl text-gray-300" />
-              <span className="text-gray-800">Pook</span>
+              <span className="text-gray-800">zoor.com</span>
             </div>
 
             {/* Mobile Menu Button */}
@@ -145,7 +145,7 @@ const Nev = () => {
               <a
                 key={index}
                 href="#"
-                className="block text-gray-700 hover:text-green-600 transition-colors"
+                className="block text-gray-700 hover:text-gray-600 transition-colors"
               >
                 {item}
               </a>

@@ -23,7 +23,7 @@ const Cart = () => {
       <Nev />
 
       <div className="max-w-6xl mx-auto p-4 sm:p-6">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-left text-orange-200">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-left text-blak">
           Your Cart
         </h2>
 
@@ -53,21 +53,21 @@ const Cart = () => {
                     </h3>
 
                     {/* Quantity Controls */}
-                   <div className="flex items-center justify-center gap-3 mt-2">
-  <button
-    onClick={() => decreaseQuantity(item.id)}
-    className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-md font-bold text-black transition"
-  >
-    −
-  </button>
-  <span className="px-3 py-1 border rounded-md">{item.quantity}</span>
-  <button
-    onClick={() => increaseQuantity(item.id)}
-    className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-md font-bold text-black transition"
-  >
-    +
-  </button>
-</div>
+                    <div className="flex items-center justify-center gap-3 mt-2">
+                      <button
+                        onClick={() => decreaseQuantity(item.id)}
+                        className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-md font-bold text-black transition"
+                      >
+                        −
+                      </button>
+                      <span className="px-3 py-1 border rounded-md">{item.quantity}</span>
+                      <button
+                        onClick={() => increaseQuantity(item.id)}
+                        className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-md font-bold text-black transition"
+                      >
+                        +
+                      </button>
+                    </div>
 
 
                     <p className="text-orange-500 font-bold text-lg mt-2">

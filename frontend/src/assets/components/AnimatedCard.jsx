@@ -24,10 +24,28 @@ const itemVariants = {
 
 const LandingPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
+    const [results, setResults] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    const handleSearch = (e) => {
+    // 🔍 Search handler (fetches products)
+    const handleSearch = async (e) => {
         e.preventDefault();
-        alert(`Searching for: ${searchQuery}`);
+        if (!searchQuery.trim()) return;
+
+        setLoading(true);
+        setError('');
+        try {
+            const response = await fetch(`http://localhost:5000/api/products?search=${searchQuery}`);
+            if (!response.ok) throw new Error('Failed to fetch');
+            const data = await response.json();
+            setResults(data);
+        } catch (err) {
+            setError('Something went wrong while searching.');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -67,6 +85,42 @@ const LandingPage = () => {
                         </button>
                     </div>
                 </motion.form>
+
+                {/* Loading / Error / Results */}
+                <div className="mt-6">
+                    {loading && <p className="text-gray-600">Searching...</p>}
+                    {error && <p className="text-red-500">{error}</p>}
+                    
+                    {!loading && results.length > 0 && (
+                        <motion.div
+                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
+                        >
+                            {results.map((product) => (
+                                <motion.div 
+                                    key={product._id} 
+                                    className="bg-white rounded-xl shadow-md p-4 text-left hover:shadow-lg transition"
+                                    variants={itemVariants}
+                                >
+                                    <img
+                                        src={product.image || 'https://via.placeholder.com/150'}
+                                        alt={product.name}
+                                        className="w-full h-40 object-cover rounded-lg mb-2"
+                                    />
+                                    <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
+                                    <p className="text-sm text-gray-600 line-clamp-2">{product.description}</p>
+                                    <p className="font-bold text-green-700 mt-1">₹{product.price}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    )}
+
+                    {!loading && results.length === 0 && searchQuery && !error && (
+                        <p className="text-gray-600 mt-4">No products found for "{searchQuery}".</p>
+                    )}
+                </div>
             </motion.div>
         </div>
     );
@@ -74,7 +128,7 @@ const LandingPage = () => {
 
 const styles = {
     page: {
-        minHeight: '70vh',
+        minHeight: '100vh',
         background: `
             linear-gradient(135deg, rgba(222, 226, 225, 0.9), rgba(255, 255, 255, 0.64)),
             url(${img}) center/cover no-repeat
@@ -87,7 +141,8 @@ const styles = {
     },
     hero: {
         textAlign: 'center',
-        maxWidth: '700px'
+        maxWidth: '900px',
+        width: '100%'
     },
     heading: {
         fontSize: '3rem',
@@ -95,7 +150,7 @@ const styles = {
         fontWeight: 'bold'
     },
     highlight: {
-        color: '#FFD700'
+        color: '#f3cf00ff'
     },
     subtext: {
         fontSize: '1.25rem',

@@ -21,7 +21,7 @@ function CategoryPage() {
           <div className="absolute inset-0 -top-10 h-40 bg-gray-200 opacity-30 blur-3xl rounded-3xl"></div>
 
           <h1 className="relative text-5xl font-extrabold bg-gray-400 bg-clip-text text-transparent drop-shadow-md">
-            Category: {categoryName}
+             {categoryName}
           </h1>
 
           <p className="relative mt-3 text-gray-600 text-lg tracking-wide">
@@ -52,7 +52,7 @@ function CategoryPage() {
                   <img
                     src={category.image}
                     alt="Category"
-                    className="w-full h-96 object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                    className="w-full h-96 object-cover rounded-xl p-1 transition-transform duration-500 ease-in-out group-hover:scale-105"
                   />
                 </div>
               </div>

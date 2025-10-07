@@ -12,11 +12,14 @@ import ItemPage from './assets/components/ItemPage'
 import ItemList from './assets/components/ItemList'
 import ProductPage from './assets/components/ProductPage'
 import Cart from './assets/components/Cart'
+import ScrollToTop from './assets/components/ScrollToTop';
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <> <CartProvider>
+    <>
+    <ScrollToTop/>
+     <CartProvider>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />

@@ -3,25 +3,25 @@
     {
       "id": "home_textile",
       "name": "Home Textile",
-      "image": "https://naturaltexsolutions.com/wp-content/uploads/2019/04/home-textile-natural-tex-soltuions-one-1024x768.jpg",
+      "image": "https://pngimg.com/uploads/pillow/pillow_PNG102983.png",
       "subcategories": ["Bedsheets", "Pillows", "Curtains", "Blankets", "Towels", "Carpets", "Rugs"]
     },
     {
       "id": "sanitaryware",
       "name": "Sanitaryware",
-      "image": "https://miro.medium.com/v2/resize:fit:626/1*hmOJ-zrJL8CWNiK5FFjl2g.jpeg",
+      "image": "https://static.vecteezy.com/system/resources/thumbnails/054/311/205/small_2x/modern-faucet-pouring-water-into-a-minimalist-white-bowl-sink-in-a-bright-indoor-setting-png.png",
       "subcategories": ["Wash Basins", "Toilets", "Taps", "Showers", "Urinals", "Flush Tanks"]
     },
     {
       "id": "hardware",
       "name": "Hardware",
-      "image": "https://onthegrid.city/imager/s3_amazonaws_com/onthegrid.city/assets/grid/new-york-city/east-village/saifees-hardware/OTG_EASTVILLAGE_050415-198_299006722e285f47655d17d1c9136337.jpg",
+      "image": "https://www.kindpng.com/picc/m/160-1607025_hardware-tools-png-handyman-tools-transparent-png.png",
       "subcategories": ["Locks", "Hinges", "Screws", "Nails", "Brackets", "Clamps", "Handles"]
     },
     {
       "id": "security",
       "name": "Security & Surveillance",
-      "image": "https://digihubsolution.com/wp-content/uploads/2023/01/Security-Surveillance-Systems-scaled.jpg",
+      "image": "https://www.pngmart.com/files/7/CCTV-Camera-PNG-Transparent-HD-Photo.png",
       "subcategories": ["CCTV", "Smart Locks", "Alarms", "Motion Sensors", "Door Phones", "Fire Alarms"]
     },
     {
