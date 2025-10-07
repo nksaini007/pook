@@ -64,7 +64,7 @@ const Nev = () => {
                 key={i}
                 to={`/${link.toLowerCase()}`}
                 className={({ isActive }) =>
-                  `text-gray-700 hover:text-green-600 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-green-500 after:transition-all after:duration-300 hover:after:w-full ${
+                  `text-gray-400 hover:text-gray-600 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[2px] after:bg-gray-500 after:transition-all after:duration-300 hover:after:w-full ${
                     isActive ? "text-green-600 after:w-full" : ""
                   }`
                 }
@@ -73,8 +73,7 @@ const Nev = () => {
               </NavLink>
             ))}
 
-           
-
+         
             <Link
               to="/cart"
               className="px-4 py-1.5 rounded-full bg-orange-400 text-white font-medium hover:bg-green-600 flex items-center gap-2"
