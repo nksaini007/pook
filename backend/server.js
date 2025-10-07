@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const connectDB = require('./config/db');
@@ -15,8 +14,16 @@ connectDB();
 
 // Routes
 const userRoutes = require('./routes/userRoutes');
+const productRoutes = require('./routes/productRoutes'); // ✅ added
+
 app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes); // ✅ added
+
+// Test Route
+app.get('/', (req, res) => {
+  res.send('✅ API is running...');
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

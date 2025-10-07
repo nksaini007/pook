@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useContext, useState } from 'react';
+import { color, motion } from 'framer-motion';
 import img from '../img/city.jpg';
 import { FaSearch } from "react-icons/fa";
-
+import { AuthContext } from '../context/AuthContext';
 const containerVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -27,7 +27,7 @@ const LandingPage = () => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-
+    const {user}=useContext(AuthContext)
     // 🔍 Search handler (fetches products)
     const handleSearch = async (e) => {
         e.preventDefault();
@@ -57,7 +57,7 @@ const LandingPage = () => {
                 variants={containerVariants}
             >
                 <motion.h1 variants={itemVariants} style={styles.heading}>
-                    Welcome to <span style={styles.highlight}>pook</span>
+                    Welcome  <span style={styles.highlight}>{user?.name}</span>
                 </motion.h1>
                 <motion.p variants={itemVariants} style={styles.subtext}>
                     Sketch your coordinates.
@@ -93,7 +93,7 @@ const LandingPage = () => {
                     
                     {!loading && results.length > 0 && (
                         <motion.div
-                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4"
+                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-4"
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
@@ -147,7 +147,8 @@ const styles = {
     heading: {
         fontSize: '3rem',
         marginBottom: '1rem',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color:'#2423225b'
     },
     highlight: {
         color: '#f3cf00ff'
