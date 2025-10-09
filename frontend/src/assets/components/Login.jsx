@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { FaLock, FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
+import img from '../img/city.jpg';
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  // Access login() from AuthContext
   const { login } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
@@ -24,13 +26,9 @@ function Login() {
       });
 
       const data = await response.json();
-
       if (!response.ok) throw new Error(data.message || 'Login failed');
 
-      // ✅ Save data globally via context
       login(data.user, data.token);
-
-      console.log('User logged in:', data.user.name);
       navigate('/');
     } catch (err) {
       setError(err.message || 'Something went wrong');
@@ -40,17 +38,24 @@ function Login() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-100 to-gray-50 overflow-hidden px-4">
-      {/* Background blur effects */}
-      <div className="absolute -top-32 -left-32 w-80 h-80 bg-pink-300 rounded-full opacity-30 filter blur-3xl"></div>
-      <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-200 rounded-full opacity-30 filter blur-2xl"></div>
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <img
+        src={img}
+        alt="City Background"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50"></div>
 
       {/* Login Card */}
-      <div className="relative z-10 w-full max-w-md bg-white shadow-xl rounded-2xl border border-gray-200 p-8">
+      <div className="relative z-10 w-full max-w-md p-8 rounded-2xl bg-white/80 backdrop-blur-lg shadow-2xl animate-fadeIn">
         {/* Header */}
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800">Welcome Back</h1>
-          <p className="text-gray-500 mt-1 text-sm">Login to continue</p>
+          <p className="text-gray-500 mt-1 text-sm">
+            Login to access your account
+          </p>
         </div>
 
         {/* Error Message */}
@@ -62,46 +67,52 @@ function Login() {
 
         {/* Form */}
         <form onSubmit={handleLogin} className="space-y-5">
-          <div>
-            <label className="block mb-1 text-sm text-gray-700 font-medium">
-              Email
-            </label>
+          {/* Email Input */}
+          <div className="relative">
+            <FaEnvelope className="absolute left-3 top-3 text-gray-400" />
             <input
               type="email"
-              className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition placeholder-gray-400"
+              placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
               required
+              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition placeholder-gray-400"
             />
           </div>
 
-          <div>
-            <label className="block mb-1 text-sm text-gray-700 font-medium">
-              Password
-            </label>
+          {/* Password Input */}
+          <div className="relative">
+            <FaLock className="absolute left-3 top-3 text-gray-400" />
             <input
-              type="password"
-              className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition placeholder-gray-400"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
               required
+              className="w-full pl-10 pr-10 py-2 rounded-lg border border-gray-300 bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition placeholder-gray-400"
             />
+            <button
+              type="button"
+              className="absolute right-3 top-2.5 text-gray-500"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
 
           <div className="text-right text-sm">
-            <Link to="/forgot-password" className="text-blue-500 hover:underline">
+            <Link to="/forgot-password" className="text-orange-500 hover:underline">
               Forgot password?
             </Link>
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
             className={`w-full py-2 ${
-              loading ? 'bg-orange-300' : 'bg-orange-400 hover:bg-orange-500'
-            } text-white rounded-lg transition font-medium shadow-md`}
+              loading ? 'bg-orange-300' : 'bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600'
+            } text-white rounded-lg shadow-md font-medium transition`}
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
@@ -109,7 +120,7 @@ function Login() {
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Don’t have an account?{' '}
-          <Link to="/signup" className="text-blue-500 hover:underline font-medium">
+          <Link to="/signup" className="text-orange-500 hover:underline font-medium">
             Sign up
           </Link>
         </p>

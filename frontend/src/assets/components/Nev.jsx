@@ -16,7 +16,7 @@ const ProfileDropdown = ({ user, logout }) => {
       />
       {open && (
         <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg py-2 z-50">
-          <p className="px-4 py-1 text-sm text-gray-800">{user.name}</p>
+          <p className="px-4  text-sm text-orange-300">{user.name}'s profile</p>
           <Link to="/dashboard" className="block px-4 py-1 text-sm text-gray-700 hover:bg-gray-100">
             Dashboard
           </Link>
@@ -25,7 +25,7 @@ const ProfileDropdown = ({ user, logout }) => {
           </Link>
           <button
             onClick={logout}
-            className="w-full text-left px-4 py-1 text-sm text-red-500 hover:bg-red-50"
+            className="  rounded rounded-full  text-left px-2 py-1 text-sm text-red-500 hover:bg-red-50"
           >
             Logout
           </button>
@@ -49,12 +49,12 @@ const Nev = () => {
 
   return (
     <nav className="bg-white/95 backdrop-blur-md text-gray-800 shadow-md top-0 z-50 w-full border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="flex justify-between items-center py-4">
+      <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-10">
+        <div className="flex justify-between items-center py-3">
           {/* Logo */}
           <div className="flex items-center gap-2 text-xl font-bold tracking-wide text-green-600">
             <FaArtstation className="text-2xl text-gray-300" />
-            <span className="text-gray-800">zoor.com</span>
+            <span className="text-gray-800">bilota.com</span>
           </div>
 
           {/* Desktop Links */}
