@@ -9,6 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ✅ Serve uploaded images
+app.use('/uploads', express.static('uploads'));
+
 // Connect to MongoDB
 connectDB();
 

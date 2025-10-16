@@ -6,13 +6,13 @@ const Categories = () => {
   return (
     <div className="relative min-h-screen bg-gray-100 overflow-hidden py-4 px-3">
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-7xl mx-auto">
         <h2 className="text-2xl sm:text-3xl  text-gray-500 text-center mb-8 ">
           Explore Categories
         </h2>
 
         {/* Grid → 2 on mobile, 3 on md, 4 on lg */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
           {cetogry.homeCategories.map((category) => (
             <Link key={category.id} to={`/category/${category.name}`} className="block">
               <div className="group bg-white/30 backdrop-blur-lg rounded-xl overflow-hidden shadow-md border border-white/20 transition-all duration-300 hover:scale-105 flex flex-col h-full">

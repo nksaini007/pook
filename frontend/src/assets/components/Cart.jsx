@@ -3,6 +3,7 @@ import { CartContext } from "../context/CartContext";
 import Nev from "./Nev";
 import Footer from "./Footer";
 import { Trash2 } from "lucide-react";
+import  img  from '../img/dance2.gif';
 
 const Cart = () => {
   const {
@@ -28,9 +29,21 @@ const Cart = () => {
         </h2>
 
         {cartItems.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg mt-10">
-            Your cart is empty.
-          </p>
+        <p className="flex flex-col items-center justify-center text-gray-600 text-xl font-medium mt-10">
+  <img
+    src={img}
+    alt="Empty cart illustration"
+    className="w-64  object-contain opacity-30 drop-shadow-lg transition-transform duration-300 hover:scale-105"
+  />
+  <span className="text-2xl font-semibold text-gray-700 mb-2">
+    Your cart is empty 
+  </span>
+  <span className="text-gray-500 text-lg">
+    Looks like you haven’t added anything yet.
+  </span>
+</p>
+
+         
         ) : (
           <>
             <div className="flex flex-col gap-4">

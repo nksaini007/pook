@@ -13,6 +13,7 @@ import ItemList from './assets/components/ItemList'
 import ProductPage from './assets/components/ProductPage'
 import Cart from './assets/components/Cart'
 import ScrollToTop from './assets/components/ScrollToTop';
+import Dashboardloader from './assets/components/dashboard/Dashboardloader';
 function App() {
   const [count, setCount] = useState(0)
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+         <Route path='/dashboard' element={<Dashboardloader />} />
          <Route path='/cart' element={<Cart />} />
         <Route path="*" element={<NotFound404 />} />
         <Route path="/category/:categoryName" element={<CategoryPage />} />

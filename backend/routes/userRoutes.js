@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const {
   getUsers,
@@ -6,38 +6,39 @@ const {
   createUser,
   updateUser,
   deleteUser,
-  loginuser
-} = require('../controllers/userController');
+  loginUser,
+} = require("../controllers/userController");
 
-const protect = require('../middlewares/authMiddleware'); // ✅ import JWT middleware
+const { protect, adminOnly } = require("../middlewares/authMiddleware");
 
-// ========================
-// 🔓 Public Routes
-// ========================
+/* ============================================================
+   🔓 Public Routes (Anyone can access)
+============================================================ */
 
-// Register (Signup)
-router.post('/', createUser);
+// ✅ Register (Signup)
+router.post("/signup", createUser);
 
-// Login
-router.post('/login', loginuser);
+// ✅ Login
+router.post("/login", loginUser);
 
-// ========================
-// 🔐 Protected Routes
-// ========================
+/* ============================================================
+   🔐 Protected Routes (Require Token)
+============================================================ */
 
-// Get all users
-router.get('/', protect, getUsers);
+// ✅ Get all users (Admin Only)
+router.get("/", protect, adminOnly, getUsers);
 
-// Get single user by ID
-router.get('/:id', protect, getUserById);
+// ✅ Get single user by ID (Owner or Admin)
+router.get("/:id", protect, getUserById);
 
-// Update user
-router.put('/:id', protect, updateUser);
+// ✅ Update user (Owner or Admin)
+router.put("/:id", protect, updateUser);
 
-// Delete user
-router.delete('/:id', protect, deleteUser);
+// ✅ Delete user (Admin Only)
+router.delete("/:id", protect, adminOnly, deleteUser);
 
 module.exports = router;
+
 // const express = require('express');
 // const router = express.Router();
 // const {
@@ -48,24 +49,33 @@ module.exports = router;
 //   deleteUser,
 //   loginuser
 // } = require('../controllers/userController');
-// router.post('/login',loginuser);
-// // GET all users
-// router.get('/', getUsers);
 
-// // GET single user
-// router.get('/:id', getUserById);
+// const protect = require('../middlewares/authMiddleware'); // ✅ import JWT middleware
 
-// // POST create new user
-// // router.post('/', createUser);
-// router.post('/',createUser)
-// // PUT update user
-// router.put('/:id', updateUser);
+// // ========================
+// // 🔓 Public Routes
+// // ========================
 
-// // DELETE user
-// router.delete('/:id', deleteUser);
+// // Register (Signup)
+// router.post('/', createUser);
 
+// // Login
+// router.post('/login', loginuser);
 
+// // ========================
+// // 🔐 Protected Routes
+// // ========================
 
-// //login
+// // Get all users
+// router.get('/', protect, getUsers);
+
+// // Get single user by ID
+// router.get('/:id', protect, getUserById);
+
+// // Update user
+// router.put('/:id', protect, updateUser);
+
+// // Delete user
+// router.delete('/:id', protect, deleteUser);
 
 // module.exports = router;
